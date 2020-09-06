@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.R
@@ -43,19 +44,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = ProductListAdapter(arrayListOf())
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                recyclerView.context,
-                (recyclerView.layoutManager as LinearLayoutManager).orientation
-            )
-        )
         recyclerView.adapter = adapter
     }
 
     private fun setupObservers() {
         val apiKey: String =
-            "{\"apiKey\":\"e964fc2d51064efa97e94db7c64bf3d044279d4ed0ad4bdd9dce89fecc9156f0\",\"storeId\":1,\"warehouseId\":8,\"pageSize\":100,\"currentPageIndex\":0,\"query\":\"\",\"productVariantId\":-1,\"canSeeOutOfStock\":\"false\",\"filters\":[\"categories%3D235\"]}"
-
+            "{\"apiKey\":\"e964fc2d51064efa97e94db7c64bf3d044279d4ed0ad4bdd9dce89fecc9156f0\",\"storeId\":1,\"warehouseId\":8,\"pageSize\":100,\"currentPageIndex\":0,\"query\":\"\",\"productVariantId\":-1,\"canSeeOutOfStock\":\"false\",\"filters\":[\"categories%3D31\"]}"
         val gson: Gson = Gson();
         var apiKeyData: ApiKeyModel = gson.fromJson(apiKey, ApiKeyModel::class.java)
 
