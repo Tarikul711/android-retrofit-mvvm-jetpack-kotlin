@@ -1,7 +1,8 @@
-package com.tos.android_retrofit_mvvm_jetpack_kotlin
+package com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.R
 
 class MainActivity : AppCompatActivity() {
 

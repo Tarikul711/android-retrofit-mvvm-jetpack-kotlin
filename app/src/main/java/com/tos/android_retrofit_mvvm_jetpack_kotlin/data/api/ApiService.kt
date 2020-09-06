@@ -12,7 +12,7 @@ interface ApiService {
     suspend fun getUsers(): List<User>*/
 
     @POST("searchOld")
-    fun getProducts(@Body apiKey: String): List<ProductModel>
+    fun getProducts(@Body apiKey: String): ProductModel
 
 
 }
