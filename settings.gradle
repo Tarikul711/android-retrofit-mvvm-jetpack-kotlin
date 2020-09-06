@@ -1,0 +1,2 @@
+rootProject.name='android-retrofit-mvvm-jetpack-kotlin'
+include ':app'
