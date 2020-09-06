@@ -21,7 +21,7 @@ class ProductListAdapter(private val products: ArrayList<Hits>) :
             itemView.apply {
                 tvProductName.text = hits.bengaliName
                 tvProductQuantity.text = hits.subText
-                tvProductPrice.text = "$: ${hits.price}"
+                tvProductPrice.text = "$ ${hits.price}"
                 Glide.with(ivProduct.context)
                     .load(hits.picturesUrls[0])
                     .into(ivProduct)
