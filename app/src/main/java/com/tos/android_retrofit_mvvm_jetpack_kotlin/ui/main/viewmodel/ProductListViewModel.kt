@@ -11,7 +11,7 @@ import com.tos.myapplication.utils.Resource
 
 class ProductListViewModel(private val productListRepository: ProductListRepository) : ViewModel() {
 
-    private fun getProducts(apiKey: String) = liveData {
+    fun getProducts(apiKey: String) = liveData {
         emit(Resource.loading(data = null))
         try {
             emit(Resource.success(data = productListRepository.getProducts(apiKey)))
