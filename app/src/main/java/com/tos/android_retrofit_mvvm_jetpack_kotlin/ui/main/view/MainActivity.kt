@@ -8,7 +8,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.R
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.common.ApiKeyModel
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.product.ProductModel
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.base.ViewModelFactory
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.adapter.ProductListAdapter
@@ -53,7 +55,11 @@ class MainActivity : AppCompatActivity() {
     private fun setupObservers() {
         val apiKey: String =
             "{\"apiKey\":\"e964fc2d51064efa97e94db7c64bf3d044279d4ed0ad4bdd9dce89fecc9156f0\",\"storeId\":1,\"warehouseId\":8,\"pageSize\":100,\"currentPageIndex\":0,\"query\":\"\",\"productVariantId\":-1,\"canSeeOutOfStock\":\"false\",\"filters\":[\"categories%3D235\"]}"
-        viewModel.getProducts(apiKey).observe(this, Observer {
+
+        val gson: Gson = Gson();
+        var apiKeyData: ApiKeyModel = gson.fromJson(apiKey, ApiKeyModel::class.java)
+
+        viewModel.getProducts(apiKeyData).observe(this, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     SUCCESS -> {
