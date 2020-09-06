@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  *Created by tarikul on 5/9/20
  */
 object RetrofitBuilder {
-    private const val BASE_URL = "https://5e510330f2c0d300147c034c.mockapi.io/"
+    private const val BASE_URL = "https://catalog.chaldal.com/"
 
 
     var httpClient: OkHttpClient.Builder = OkHttpClient.Builder().addInterceptor(interceptor())
