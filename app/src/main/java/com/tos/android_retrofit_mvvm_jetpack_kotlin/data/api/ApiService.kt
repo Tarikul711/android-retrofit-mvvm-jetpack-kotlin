@@ -8,11 +8,8 @@ import retrofit2.http.POST
 
 interface ApiService {
 
-/*    @GET("users")
-    suspend fun getUsers(): List<User>*/
-
     @POST("searchOld")
-    fun getProducts(@Body apiKey: String): ProductModel
+    suspend fun getProducts(@Body apiKey: String): ProductModel
 
 
 }

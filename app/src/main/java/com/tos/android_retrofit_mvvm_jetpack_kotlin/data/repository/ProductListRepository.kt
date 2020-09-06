@@ -7,5 +7,5 @@ import com.tos.myapplication.data.api.ApiHelper
  */
 
 class ProductListRepository(private val apiHelper: ApiHelper) {
-    fun getProducts(apiKeys: String) = apiHelper.getProducts(apiKeys)
+    suspend fun getProducts(apiKeys: String) = apiHelper.getProducts(apiKeys)
 }
