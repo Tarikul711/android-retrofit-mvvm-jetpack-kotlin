@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.R;
 
-public class ProductsActivity extends AppCompatActivity {
+public class OfferActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products);
+        setContentView(R.layout.activity_offer);
     }
 }
