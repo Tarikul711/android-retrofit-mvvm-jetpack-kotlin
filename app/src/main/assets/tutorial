@@ -1,3 +1,4 @@
 Now I will discuss about the paging library in android.
 -> Implement the file " implementation 'android.arch.paging:runtime:1.0.1' "
+-> add the gson model class and config the api interface.
 ->

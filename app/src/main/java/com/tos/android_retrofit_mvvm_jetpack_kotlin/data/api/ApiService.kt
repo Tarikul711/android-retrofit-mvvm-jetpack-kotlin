@@ -10,4 +10,8 @@ import retrofit2.http.POST
 interface ApiService {
     @POST("searchOld")
     suspend fun getProducts(@Body apiKey: ApiKeyModel): ProductModel
+
+
+    @POST("searchOld")
+    suspend fun getAllOfferedProducts(@Body apiKey: ApiKeyModel): ProductModel
 }
