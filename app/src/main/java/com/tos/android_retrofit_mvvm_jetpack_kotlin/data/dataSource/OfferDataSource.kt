@@ -1,17 +1,17 @@
 package com.tos.android_retrofit_mvvm_jetpack_kotlin.data.dataSource
 
 import androidx.paging.PageKeyedDataSource
-import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product.ProductModel
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product.ProductModelOld
 
 /**
  *Created by tarikul on 8/9/20
  */
 
-class OfferDataSource : PageKeyedDataSource<String, ProductModel>() {
+class OfferDataSource : PageKeyedDataSource<String, ProductModelOld>() {
 
     override fun loadInitial(
         params: LoadInitialParams<String>,
-        callback: LoadInitialCallback<String, ProductModel>
+        callback: LoadInitialCallback<String, ProductModelOld>
     ) {
 
         TODO("not implemented")
@@ -19,7 +19,7 @@ class OfferDataSource : PageKeyedDataSource<String, ProductModel>() {
 
     override fun loadAfter(
         params: LoadParams<String>,
-        callback: LoadCallback<String, ProductModel>
+        callback: LoadCallback<String, ProductModelOld>
     ) {
 
         TODO("not implemented")
@@ -27,7 +27,7 @@ class OfferDataSource : PageKeyedDataSource<String, ProductModel>() {
 
     override fun loadBefore(
         params: LoadParams<String>,
-        callback: LoadCallback<String, ProductModel>
+        callback: LoadCallback<String, ProductModelOld>
     ) {
 
         TODO("not implemented")

@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit
  *Created by tarikul on 5/9/20
  */
 object RetrofitBuilder {
-    private const val BASE_URL = "https://catalog.chaldal.com/"
+//    private const val BASE_URL = "https://catalog.chaldal.com/"
+    private const val BASE_URL = "https://api.evaly.com.bd/core/public/"
 
     // Caching data from online
     var cacheSize: Long = 5 * 1024 * 1024;

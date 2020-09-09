@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.R
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.common.ApiKeyModel
-import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product.ProductModel
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product.ProductModelOld
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.base.ViewModelFactory
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.adapter.ProductListAdapter
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.viewmodel.ChaldalListViewModel
@@ -74,9 +74,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun retrieveList(product: ProductModel) {
+    private fun retrieveList(productOld: ProductModelOld) {
         adapter.apply {
-            addProducts(product.hits)
+            addProducts(productOld.hits)
             notifyDataSetChanged()
         }
     }
