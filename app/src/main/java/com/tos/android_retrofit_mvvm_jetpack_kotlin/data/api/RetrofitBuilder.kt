@@ -2,6 +2,7 @@ package com.tos.myapplication.data.api
 
 
 import android.util.Log
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.MyApplication
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.Interceptor
@@ -21,13 +22,15 @@ object RetrofitBuilder {
     private const val BASE_URL = "https://catalog.chaldal.com/"
 
     // Caching data from online
-    var cacheSize:Long = 5 * 1024 * 1024;
+    var cacheSize: Long = 5 * 1024 * 1024;
     var HEADER_CACHE_CONTROL: String = "Cache-Control"
     var HEADER_PRAGMA: String = "Pragma"
 
 
     var httpClient: OkHttpClient.Builder =
-        OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor())
+        OkHttpClient.Builder()
+            .cache(cache())
+            .addInterceptor(httpLoggingInterceptor())
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
@@ -39,9 +42,11 @@ object RetrofitBuilder {
 
     val apiService: ApiService = getRetrofit().create(ApiService::class.java)
 
-    private fun cache():Cache{
-        return Cache(File(,"someIdentifier"), cacheSize)
+    private fun cache(): Cache {
+        return Cache(MyApplication.instance.cacheDir, cacheSize)
     }
+
+
     private fun httpLoggingInterceptor(): HttpLoggingInterceptor { // will call in the offline mode
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -53,9 +58,7 @@ object RetrofitBuilder {
     }
     /*
     *
-    * private static Cache cache() {
-        return new Cache(new File(MyApplication.getInstance().getCacheDir(), "someIdentifier"), cacheSize);
-    }
+
     *
     *
     private static Interceptor networkInterceptor() {
