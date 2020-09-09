@@ -1,5 +1,6 @@
 package com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.view
 
+import ProductModel
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,7 +14,9 @@ import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.common.ApiKeyMode
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product.ProductModelOld
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.base.ViewModelFactory
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.adapter.ChaldalListAdapter
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.adapter.ProductListAdapter
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.viewmodel.ChaldalListViewModel
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.viewmodel.ProductListViewModel
 import com.tos.myapplication.data.api.ApiHelper
 import com.tos.myapplication.data.api.RetrofitBuilder
 import com.tos.myapplication.utils.Status.*
@@ -21,8 +24,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class ProductsActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ChaldalListViewModel
-    private lateinit var adapter: ChaldalListAdapter
+    private lateinit var viewModel: ProductListViewModel
+    private lateinit var adapter: ProductListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,22 +38,17 @@ class ProductsActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(
             this,
             ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
-        ).get(ChaldalListViewModel::class.java)
+        ).get(ProductListViewModel::class.java)
     }
 
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ChaldalListAdapter(arrayListOf())
+        adapter = ProductListAdapter(arrayListOf())
         recyclerView.adapter = adapter
     }
 
     private fun setupObservers() {
-        val apiKey: String =
-            "{\"apiKey\":\"e964fc2d51064efa97e94db7c64bf3d044279d4ed0ad4bdd9dce89fecc9156f0\",\"storeId\":1,\"warehouseId\":8,\"pageSize\":100,\"currentPageIndex\":0,\"query\":\"\",\"productVariantId\":-1,\"canSeeOutOfStock\":\"false\",\"filters\":[\"categories%3D31\"]}"
-        val gson: Gson = Gson();
-        var apiKeyData: ApiKeyModel = gson.fromJson(apiKey, ApiKeyModel::class.java)
-
-        viewModel.getProducts(apiKeyData).observe(this, Observer {
+        viewModel.getProducts().observe(this, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     SUCCESS -> {
@@ -74,9 +72,9 @@ class ProductsActivity : AppCompatActivity() {
     }
 
 
-    private fun retrieveList(productOld: ProductModelOld) {
+    private fun retrieveList(productModel: ProductModel) {
         adapter.apply {
-            addProducts(productOld.hits)
+            addProducts(productModel.results)
             notifyDataSetChanged()
         }
     }
