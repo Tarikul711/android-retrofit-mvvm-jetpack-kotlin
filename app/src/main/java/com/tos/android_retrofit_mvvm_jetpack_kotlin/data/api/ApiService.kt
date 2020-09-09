@@ -2,9 +2,8 @@ package com.tos.myapplication.data.api
 
 
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.common.ApiKeyModel
-import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.product.ProductModel
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product.ProductModel
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {

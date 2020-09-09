@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.R
-import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.product.Hits
-import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.product.ProductModel
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product.Hits
 import kotlinx.android.synthetic.main.product_layout.view.*
 
 /**

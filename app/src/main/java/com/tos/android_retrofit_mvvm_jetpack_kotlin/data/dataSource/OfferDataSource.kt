@@ -1,7 +1,7 @@
 package com.tos.android_retrofit_mvvm_jetpack_kotlin.data.dataSource
 
 import androidx.paging.PageKeyedDataSource
-import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.product.ProductModel
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product.ProductModel
 
 /**
  *Created by tarikul on 8/9/20

@@ -19,7 +19,7 @@ import com.tos.myapplication.data.api.RetrofitBuilder
 import com.tos.myapplication.utils.Status.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class ProductsActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ProductListViewModel
     private lateinit var adapter: ProductListAdapter

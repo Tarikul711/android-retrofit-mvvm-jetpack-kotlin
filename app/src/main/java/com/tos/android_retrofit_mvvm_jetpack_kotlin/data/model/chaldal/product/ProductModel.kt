@@ -1,4 +1,4 @@
-package com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.product
+package com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product
 
 /**
  *Created by tarikul on 6/9/20
