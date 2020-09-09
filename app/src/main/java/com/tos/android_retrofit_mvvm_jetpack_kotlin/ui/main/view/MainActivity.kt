@@ -13,7 +13,7 @@ import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.common.ApiKeyMode
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product.ProductModel
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.base.ViewModelFactory
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.adapter.ProductListAdapter
-import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.viewmodel.ProductListViewModel
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.viewmodel.ChaldalListViewModel
 import com.tos.myapplication.data.api.ApiHelper
 import com.tos.myapplication.data.api.RetrofitBuilder
 import com.tos.myapplication.utils.Status.*
@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ProductListViewModel
+    private lateinit var viewModel: ChaldalListViewModel
     private lateinit var adapter: ProductListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(
             this,
             ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
-        ).get(ProductListViewModel::class.java)
+        ).get(ChaldalListViewModel::class.java)
     }
 
     private fun setupUI() {

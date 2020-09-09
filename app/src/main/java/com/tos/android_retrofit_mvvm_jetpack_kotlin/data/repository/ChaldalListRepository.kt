@@ -7,6 +7,6 @@ import com.tos.myapplication.data.api.ApiHelper
  *Created by tarikul on 6/9/20
  */
 
-class ProductListRepository(private val apiHelper: ApiHelper) {
+class ChaldalListRepository(private val apiHelper: ApiHelper) {
     suspend fun getProducts(apiKeys: ApiKeyModel) = apiHelper.getProducts(apiKeys)
 }
