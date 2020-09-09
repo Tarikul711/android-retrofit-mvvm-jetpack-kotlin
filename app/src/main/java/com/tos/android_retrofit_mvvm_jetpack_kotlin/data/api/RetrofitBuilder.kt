@@ -1,6 +1,7 @@
 package com.tos.myapplication.data.api
 
 
+import android.util.Log
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.MyApplication
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.utils.NetworkUtils
 import okhttp3.*
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit
  *Created by tarikul on 5/9/20
  */
 object RetrofitBuilder {
-//    private const val BASE_URL = "https://catalog.chaldal.com/"
+    //    private const val BASE_URL = "https://catalog.chaldal.com/"
     private const val BASE_URL = "https://api.evaly.com.bd/core/public/"
 
     // Caching data from online
@@ -70,10 +71,10 @@ object RetrofitBuilder {
 
     class OfflineInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
-            var request = chain.request()
+            val request = chain.request()
 
-            if (NetworkUtils.hasNetwork(MyApplication.instance.applicationContext)!!) {
-                var cacheControl: CacheControl = CacheControl.Builder()
+            if (!NetworkUtils.hasNetwork(MyApplication.instance.applicationContext)!!) {
+                val cacheControl: CacheControl = CacheControl.Builder()
                     .maxStale(7, TimeUnit.DAYS).build()
                 request.newBuilder()
                     .removeHeader(HEADER_PRAGMA)
@@ -85,35 +86,5 @@ object RetrofitBuilder {
             return chain.proceed(request)
         }
     }
-    /*private fun networkInterceptor(): Interceptor {
 
-    }*/
-    /*
-    *
- private static Interceptor offlineInterceptor() {
-        return chain -> {
-            Log.d(TAG, "offline interceptor: called.");
-            Request request = chain.request();
-
-            // prevent caching when network is on. For that we use the "networkInterceptor"
-            if (!MyApplication.hasNetwork()) {
-                CacheControl cacheControl = new CacheControl.Builder()
-                        .maxStale(7, TimeUnit.DAYS)
-                        .build();
-
-                request = request.newBuilder()
-                        .removeHeader(HEADER_PRAGMA)
-                        .removeHeader(HEADER_CACHE_CONTROL)
-                        .cacheControl(cacheControl)
-                        .build();
-            }
-
-            return chain.proceed(request);
-        };
-    }
-    *
-    *
-
-
-    }*/
 }

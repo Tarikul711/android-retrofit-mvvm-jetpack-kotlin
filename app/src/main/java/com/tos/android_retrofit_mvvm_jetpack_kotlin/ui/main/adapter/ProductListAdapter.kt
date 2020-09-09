@@ -17,14 +17,14 @@ import kotlinx.android.synthetic.main.product_layout.view.*
 class ProductListAdapter(private val products: ArrayList<Results>) :
     RecyclerView.Adapter<ProductListAdapter.DataViewHolder>() {
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(product: Results) {
+        fun bind(result: Results) {
             itemView.apply {
-               /* tvProductName.text = hits.bengaliName
-                tvProductQuantity.text = hits.subText
-                tvProductPrice.text = "$ ${hits.price}"
+                tvProductName.text = result.name
+                tvProductQuantity.text = result.price_type
+                tvProductPrice.text = "$ ${result.max_price}"
                 Glide.with(ivProduct.context)
-                    .load(hits.picturesUrls[0])
-                    .into(ivProduct)*/
+                    .load(result.image_urls[0])
+                    .into(ivProduct)
             }
         }
 

@@ -3,6 +3,7 @@ package com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.view
 import ProductModel
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer

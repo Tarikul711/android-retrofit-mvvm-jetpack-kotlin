@@ -17,6 +17,6 @@ interface ApiService {
     suspend fun getAllOfferedProducts(@Body apiKey: ApiKeyModel): ProductModelOld
 
 
-    @GET("products/?page=1&limit=12&brand=garnier-104672b97")
+    @GET("products/?page=2&limit=220&brand=bashundhara-1dded45d8")
     suspend fun getProducts(): ProductModel
 }
