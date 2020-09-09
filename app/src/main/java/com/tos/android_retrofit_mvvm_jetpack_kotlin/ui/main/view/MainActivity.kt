@@ -12,7 +12,7 @@ import com.tos.android_retrofit_mvvm_jetpack_kotlin.R
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.common.ApiKeyModel
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.data.model.chaldal.product.ProductModelOld
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.base.ViewModelFactory
-import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.adapter.ProductListAdapter
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.adapter.ChaldalListAdapter
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.ui.main.viewmodel.ChaldalListViewModel
 import com.tos.myapplication.data.api.ApiHelper
 import com.tos.myapplication.data.api.RetrofitBuilder
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ChaldalListViewModel
-    private lateinit var adapter: ProductListAdapter
+    private lateinit var adapter: ChaldalListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ProductListAdapter(arrayListOf())
+        adapter = ChaldalListAdapter(arrayListOf())
         recyclerView.adapter = adapter
     }
 
