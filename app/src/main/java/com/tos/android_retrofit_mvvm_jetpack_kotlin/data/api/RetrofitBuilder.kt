@@ -1,19 +1,14 @@
 package com.tos.myapplication.data.api
 
 
-import android.util.Log
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.MyApplication
 import okhttp3.Cache
-import okhttp3.CacheControl
-import okhttp3.Interceptor
 import okhttp3.Interceptor.Companion.invoke
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
-import java.util.concurrent.TimeUnit
 
 /**
  *Created by tarikul on 5/9/20
@@ -31,6 +26,7 @@ object RetrofitBuilder {
         OkHttpClient.Builder()
             .cache(cache())
             .addInterceptor(httpLoggingInterceptor())
+
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
@@ -53,12 +49,33 @@ object RetrofitBuilder {
         return httpLoggingInterceptor
     }
 
-    private fun networkInterceptor(): Interceptor {
 
-    }
+    /*private fun networkInterceptor(): Interceptor {
+
+    }*/
     /*
     *
+ private static Interceptor offlineInterceptor() {
+        return chain -> {
+            Log.d(TAG, "offline interceptor: called.");
+            Request request = chain.request();
 
+            // prevent caching when network is on. For that we use the "networkInterceptor"
+            if (!MyApplication.hasNetwork()) {
+                CacheControl cacheControl = new CacheControl.Builder()
+                        .maxStale(7, TimeUnit.DAYS)
+                        .build();
+
+                request = request.newBuilder()
+                        .removeHeader(HEADER_PRAGMA)
+                        .removeHeader(HEADER_CACHE_CONTROL)
+                        .cacheControl(cacheControl)
+                        .build();
+            }
+
+            return chain.proceed(request);
+        };
+    }
     *
     *
     private static Interceptor networkInterceptor() {
