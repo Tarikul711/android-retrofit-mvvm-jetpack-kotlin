@@ -2,13 +2,14 @@ package com.tos.myapplication.data.api
 
 
 import com.tos.android_retrofit_mvvm_jetpack_kotlin.MyApplication
-import okhttp3.Cache
-import okhttp3.Interceptor.Companion.invoke
-import okhttp3.OkHttpClient
+import com.tos.android_retrofit_mvvm_jetpack_kotlin.utils.NetworkUtils
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
+import java.util.concurrent.TimeUnit
+
 
 /**
  *Created by tarikul on 5/9/20
@@ -22,10 +23,12 @@ object RetrofitBuilder {
     var HEADER_PRAGMA: String = "Pragma"
 
 
-    var httpClient: OkHttpClient.Builder =
+    var httpClient =
         OkHttpClient.Builder()
             .cache(cache())
             .addInterceptor(httpLoggingInterceptor())
+            .addInterceptor(NetworkInterceptor())
+            .addInterceptor(OfflineInterceptor())
 
 
     private fun getRetrofit(): Retrofit {
@@ -50,6 +53,37 @@ object RetrofitBuilder {
     }
 
 
+    class NetworkInterceptor : Interceptor {
+        override fun intercept(chain: Interceptor.Chain): Response {
+            val response = chain.proceed(chain.request())
+            val cacheControl = CacheControl.Builder()
+                .maxAge(5, TimeUnit.SECONDS)
+                .build()
+            return response.newBuilder()
+                .removeHeader(HEADER_PRAGMA)
+                .removeHeader(HEADER_CACHE_CONTROL)
+                .header(HEADER_CACHE_CONTROL, cacheControl.toString())
+                .build();
+        }
+    }
+
+    class OfflineInterceptor : Interceptor {
+        override fun intercept(chain: Interceptor.Chain): Response {
+            var request = chain.request()
+
+            if (NetworkUtils.hasNetwork(MyApplication.instance.applicationContext)!!) {
+                var cacheControl: CacheControl = CacheControl.Builder()
+                    .maxStale(7, TimeUnit.DAYS).build()
+                request.newBuilder()
+                    .removeHeader(HEADER_PRAGMA)
+                    .removeHeader(HEADER_CACHE_CONTROL)
+                    .cacheControl(cacheControl)
+                    .build();
+            }
+
+            return chain.proceed(request)
+        }
+    }
     /*private fun networkInterceptor(): Interceptor {
 
     }*/
@@ -78,22 +112,7 @@ object RetrofitBuilder {
     }
     *
     *
-    private static Interceptor networkInterceptor() {
-        return chain -> {
-            Log.d(TAG, "network interceptor: called.");
 
-            Response response = chain.proceed(chain.request());
-
-            CacheControl cacheControl = new CacheControl.Builder()
-                    .maxAge(5, TimeUnit.SECONDS)
-                    .build();
-
-            return response.newBuilder()
-                    .removeHeader(HEADER_PRAGMA)
-                    .removeHeader(HEADER_CACHE_CONTROL)
-                    .header(HEADER_CACHE_CONTROL, cacheControl.toString())
-                    .build();
-        };
 
     }*/
 }
