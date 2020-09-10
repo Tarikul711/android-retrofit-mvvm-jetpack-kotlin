@@ -29,7 +29,7 @@ object RetrofitBuilder {
         OkHttpClient.Builder()
             .cache(cache())
             .addInterceptor(httpLoggingInterceptor())
-            .addInterceptor(NetworkInterceptor())
+            .addNetworkInterceptor(NetworkInterceptor())
             .addInterceptor(OfflineInterceptor())
 
 
